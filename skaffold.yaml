@@ -1,0 +1,20 @@
+apiVersion: skaffold/v1beta13
+kind: Config
+build:
+  tagPolicy: 
+    sha256: {}
+  artifacts:
+    - image: iknowhtml/todo/server/rest-api
+      context: server/rest-api
+      docker: 
+        dockerfile: Development.Dockerfile
+      sync:
+        infer:
+        - 'src/**/*.js'
+deploy:
+    helm:
+      releases:
+        - name: development
+          chartPath: infrastructure
+          values:
+            skaffold.server.restAPI.image: iknowhtml/todo/server/rest-api

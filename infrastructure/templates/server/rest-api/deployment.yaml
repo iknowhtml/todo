@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "{{ include "todo.fullname" . }}-{{ .Values.server.restAPI.name }}-deployment"
+  name: "{{ include "todo.fullname" . }}-{{ .Values.server.restAPI.deployment.name }}"
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.server.restAPI.replicaCount }}
   selector:
     matchLabels:
-      name: "{{ include "todo.name" . }}-{{ .Values.server.restAPI.name }}-deployment"
+      name: "{{ include "todo.name" . }}-{{ .Values.server.restAPI.deployment.name }}"
   template:
     metadata:
       labels:
-        name: "{{ include "todo.name" . }}-{{ .Values.server.restAPI.name }}-deployment"
+        name: "{{ include "todo.name" . }}-{{ .Values.server.restAPI.deployment.name }}"
     spec:
       containers:
-        - name: "{{ .Chart.Name }}-{{ .Values.server.restAPI.name }}"
-          image: {{ .Values.skaffold.server.restAPI.image }}
-          imagePullPolicy: {{ .Values.server.restAPI.image.imagePullPolicy }}
+        - name: "{{ .Chart.Name }}-{{ .Values.server.restAPI.deployment.name }}"
+          image: {{ .Values.skaffold.server.restAPI.deployment.image }}
+          imagePullPolicy: {{ .Values.server.restAPI.deployment.imagePullPolicy }}
           ports:
-              - containerPort: {{ .Values.server.restAPI.containerPort }}
+              - containerPort: {{ .Values.server.restAPI.port }}
           

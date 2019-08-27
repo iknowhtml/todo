@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{ include "todo.fullname" . }}-{{ .Values.server.restAPI.name }}-service"
+  name: "{{ include "todo.fullname" . }}-{{ .Values.server.restAPI.clusterIPService.name }}"
 spec:
-  type: {{ .Values.server.restAPI.service.type }}
+  type: {{.Values.server.restAPI.clusterIPService.type}}
   ports:
-    - port: {{ .Values.server.restAPI.service.port }}
-      targetPort: {{ .Values.server.restAPI.containerPort }}
+    - port: {{ .Values.server.restAPI.port }}
+      targetPort: {{ .Values.server.restAPI.port }}
   selector:
-    name: "{{ include "todo.name" . }}-{{ .Values.server.restAPI.name }}-deployment"
+    name: "{{ include "todo.name" . }}-{{ .Values.server.restAPI.deployment.name }}"

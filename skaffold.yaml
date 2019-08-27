@@ -15,6 +15,6 @@ deploy:
     helm:
       releases:
         - name: development
-          chartPath: infrastructure
+          chartPath: infrastructure/helm
           values:
             skaffold.server.restAPI.deployment.image: iknowhtml/todo/server/rest-api  

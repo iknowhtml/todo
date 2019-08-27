@@ -1,0 +1,11 @@
+name: todo
+runtime: nodejs
+description: Google cloud infrastructure for a custom Tod Do application
+template:
+  config:
+    gcp:project:
+      description: Google Cloud project to deploy to
+      default: general-purpose-resources
+    gcp:zone:
+      description: Google Cloude zone to deploy to
+      default: us-east1-b

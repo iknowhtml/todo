@@ -17,4 +17,4 @@ deploy:
         - name: development
           chartPath: infrastructure
           values:
-            skaffold.server.restAPI.image: iknowhtml/todo/server/rest-api
+            skaffold.server.restAPI.deployment.image: iknowhtml/todo/server/rest-api  

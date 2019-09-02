@@ -1,3 +1,0 @@
-config:
-  gcp:project: general-purpose-resources
-  gcp:zone: us-east1-b

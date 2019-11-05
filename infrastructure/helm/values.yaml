@@ -3,6 +3,9 @@ server:
     deployment:
       name: rest-api-deployment
       replicaCount: 1
+      image:
+        repository: iknowhtml/todo/server/rest-api
+        tag: dev
       imagePullPolicy: Never
     clusterIPService:
       name: rest-api-cluster-ip-service

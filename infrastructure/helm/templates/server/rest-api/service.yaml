@@ -3,9 +3,8 @@ kind: Service
 metadata:
   name: "{{ include "todo.fullname" . }}-{{ .Values.server.restAPI.clusterIPService.name }}"
 spec:
+  selector:
   type: {{.Values.server.restAPI.clusterIPService.type}}
   ports:
     - port: {{ .Values.server.restAPI.port }}
       targetPort: {{ .Values.server.restAPI.port }}
-  selector:
-    name: "{{ include "todo.name" . }}-{{ .Values.server.restAPI.deployment.name }}"

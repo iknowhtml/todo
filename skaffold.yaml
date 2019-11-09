@@ -17,4 +17,16 @@ deploy:
         - name: development
           chartPath: infrastructure/helm
           values:
-            skaffold.server.graphql.deployment.image: iknowhtml/todo/server/graphql  
+            skaffold.server.graphql.deployment.image: iknowhtml/todo/server/graphql 
+profiles: 
+  - name: production
+    build:
+      tagPolicy:
+        sha256:{}
+      artifacts:
+        - image: iknowhtml/todo/server/graphql
+          context: server/graphql
+    deploy:
+      releases:
+        - name: 
+          chartPath: infrastructure/helm

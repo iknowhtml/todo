@@ -4,8 +4,8 @@ build:
   tagPolicy: 
     sha256: {}
   artifacts:
-    - image: iknowhtml/todo/server/rest-api
-      context: server/rest-api
+    - image: iknowhtml/todo/server/graphql
+      context: server/graphql
       docker: 
         dockerfile: Development.Dockerfile
       sync:
@@ -17,4 +17,4 @@ deploy:
         - name: development
           chartPath: infrastructure/helm
           values:
-            skaffold.server.restAPI.deployment.image: iknowhtml/todo/server/rest-api  
+            skaffold.server.graphql.deployment.image: iknowhtml/todo/server/graphql  

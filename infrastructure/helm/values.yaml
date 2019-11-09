@@ -1,14 +1,14 @@
 server:
-  restAPI:
+  graphql:
     deployment:
-      name: rest-api-deployment
+      name: graphql-deployment
       replicaCount: 1
       image:
-        repository: iknowhtml/todo/server/rest-api
+        repository: iknowhtml/todo/server/graphql
         tag: dev
       imagePullPolicy: Never
     clusterIPService:
-      name: rest-api-cluster-ip-service
+      name: graphql-cluster-ip-service
     port: 9090
 
 nginx-ingress:

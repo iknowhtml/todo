@@ -9,7 +9,6 @@ server:
       imagePullPolicy: Never
     clusterIPService:
       name: rest-api-cluster-ip-service
-      type: ClusterIP
     port: 9090
 
 nginx-ingress:

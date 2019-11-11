@@ -5,7 +5,7 @@ server:
       replicaCount: 1
       image:
         repository: iknowhtml/todo/server/graphql
-        tag: dev
+        tag: latest
       imagePullPolicy: Never
     clusterIPService:
       name: graphql-cluster-ip-service

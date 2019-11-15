@@ -1,0 +1,22 @@
+version: '3'
+services:
+  nginx: 
+    image: nginx:latest
+    volumes: 
+      - ./infrastructure/nginx.development.conf:/etc/nginx/nginx.conf
+    ports: 
+      - 3000:80
+    
+  graphql:
+    image: node:alpine
+    volumes:
+      - ./server/graphql:/usr/app
+      - node_modules:/usr/app/node_modules
+    working_dir: /usr/app
+    command: yarn start
+    ports: 
+      - 9090:9090
+
+volumes:
+  node_modules:
+    external: true

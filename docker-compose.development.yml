@@ -3,7 +3,7 @@ services:
   nginx: 
     image: nginx:latest
     volumes: 
-      - ./infrastructure/nginx.development.conf:/etc/nginx/nginx.conf
+      - ./server/nginx/nginx.development.conf:/etc/nginx/nginx.conf
     ports: 
       - 3000:80
     

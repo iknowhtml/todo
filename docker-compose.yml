@@ -5,13 +5,12 @@ services:
     volumes: 
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     ports: 
-      - 80
+      - 80:80
     
   graphql:
     image: graphql
     build:
       context: ./server/graphql
     working_dir: /usr/app
-    command: yarn start
     ports: 
       - 9090:9090

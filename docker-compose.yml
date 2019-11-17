@@ -14,5 +14,3 @@ services:
     build:
       context: ./server/graphql
     working_dir: /usr/app
-    ports: 
-      - 9090:9090

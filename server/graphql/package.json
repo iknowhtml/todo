@@ -1,6 +1,6 @@
 {
-  "name": "node-template",
-  "description": "A basic template for Node applications with linting and Babel transpilation",
+  "name": "todo-graphql",
+  "description": "GraphQL server for my Todo applicatiom",
   "version": "0.0.0",
   "engines": {
     "node": ">=8.0.0"

@@ -9,9 +9,9 @@
   "scripts": {
     "start": "nodemon --exec babel-node src",
     "build": "webpack --mode production --progress --display verbose --display-error-details --colors",
-    "package":"docker -t todo-graphql:$TAG .",
+    "package": "docker build -t todo-graphql:$(git describe) .",
     "test": "jest",
-    "lint": "eslint --fix src/ test/",
+    "lint": "eslint --fix src/ tests/",
     "clean": "rm -rf dist/*"
   },
   "repository": "https://github.com/iknowhtml/node-template.git",

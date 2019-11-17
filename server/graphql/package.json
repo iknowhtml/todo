@@ -1,7 +1,7 @@
 {
   "name": "node-template",
   "description": "A basic template for Node applications with linting and Babel transpilation",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "engines": {
     "node": ">=8.0.0"
   },
@@ -9,7 +9,7 @@
   "scripts": {
     "start": "nodemon --exec babel-node src",
     "build": "webpack --mode production --progress --display verbose --display-error-details --colors",
-    "serve": "node dist/app.js",
+    "package":"docker -t todo-graphql:$TAG .",
     "test": "jest",
     "lint": "eslint --fix src/ test/",
     "clean": "rm -rf dist/*"

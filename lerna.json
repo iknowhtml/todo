@@ -2,5 +2,10 @@
   "packages": [
     "client/*", "server/*"
   ],
-  "version": "independent"
+  "version": "independent",
+  "command": {
+    "version" : {
+      "message": "chore(release): Release %s"
+    }
+  }
 }

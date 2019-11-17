@@ -1,29 +1,48 @@
 version: 2
 jobs:
-  build:
+  # Updates versions of services if applicable and pushes update with tag
+  tag:
+    branches:
+      only: master
     working_directory: ~/todo
+    docker:
+      - image: circleci/node
+    steps:
+      # Checks out code from Github (1)
+      - checkout
+  build:
+    branches:
+      only: master
+    filters:
+      tags:
+        only: /^v.*/
+    working_directory: ~/todo
+    docker:
+      - image: circleci/node  
+    steps:
+      # (1)
+      - checkout
+      # Sets Up a Remote Environment to Execute Docker Commands (2)
+      - setup_remote_docker
+      - run:
+          name: Install Docker Client
+          command: |
+            set -x
+            VER="17.03.0-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
+            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            mv /tmp/docker/* /usr/bin
+  deploy:
+    filters:
+      tags: 
+        only: /^v.*/
+    requires:
+      - build
+    working directory: ~/todo
     docker:
       - image: docker:git
     steps:
-      # Checks out code from GitGub
+      # (1)
       - checkout
-      # Sets Up a Remote Environment to Execute Docker Commands
-      - setup_remote_docker
-      - run: 
-          name: Install jq (command-line JSON processor)
-          command:
-            apk add jq
-      - run: 
-          name: Install Docker Compose
-          command: |
-            curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
-            chmod +x /usr/local/bin/docker-compose
-      # - run:
-      #     name: Set Latest Commit Hash for GraphQL Repository & Latest Tag Hash for GraphQL Container
-      #     command: |
-      #       echo "export GRAPHQL=$(git log -1 --format=format:%H --full-diff server/graphql)"
-
-      # - run:
-      #     name: Build GraphQL Docker Container
-      #     command: |
-            
+      # (2)
+      - setup_remote_docker 

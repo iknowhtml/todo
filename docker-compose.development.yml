@@ -14,8 +14,6 @@ services:
       - node_modules:/usr/app/node_modules
     working_dir: /usr/app
     command: yarn start
-    ports: 
-      - 9090:9090
 
 volumes:
   node_modules:

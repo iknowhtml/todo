@@ -1,6 +1,6 @@
 {
   "name": "todo-graphql",
-  "description": "GraphQL server for my Todo applicatiom",
+  "description": "GraphQL server for my Todo application",
   "version": "0.0.0",
   "engines": {
     "node": ">=8.0.0"

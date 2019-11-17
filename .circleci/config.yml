@@ -1,0 +1,29 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/todo
+    docker:
+      - image: docker:git
+    steps:
+      # Checks out code from GitGub
+      - checkout
+      # Sets Up a Remote Environment to Execute Docker Commands
+      - setup_remote_docker
+      - run: 
+          name: Install jq (command-line JSON processor)
+          command:
+            apk add jq
+      - run: 
+          name: Install Docker Compose
+          command: |
+            curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
+            chmod +x /usr/local/bin/docker-compose
+      # - run:
+      #     name: Set Latest Commit Hash for GraphQL Repository & Latest Tag Hash for GraphQL Container
+      #     command: |
+      #       echo "export GRAPHQL=$(git log -1 --format=format:%H --full-diff server/graphql)"
+
+      # - run:
+      #     name: Build GraphQL Docker Container
+      #     command: |
+            

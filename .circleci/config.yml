@@ -23,21 +23,18 @@ jobs:
           name: Increment version(s) & push tag(s)
           command: lerna version --conventional-commits --yes
       - run:
-          name: Set PREVIOUS_TAG environment variable
-          command: echo 'export PREVIOUS_TAG=`git describe --abbrev=0 --tags $(git rev-list --tags --max-count=2) | sed -n 2p`' >> $BASH_ENV
-      - run:
           # Only builds containers if a version update has been made to package.json
           name: Build & push container images(s)
           command: |
-           lerna run package --since $PREVIOUS_TAG
-           lerna run push --since $PREVIOUS_TAG
+           lerna run package --since $(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=2) | sed -n 2p)
+           lerna run push --since $(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=2) | sed -n 2p)
       - run:
           name: Deploy container(s)
           command: |
             if false; then
              echo
             else
-              lerna run deploy --since $PREVIOUS_TAG
+              lerna run deploy --since $(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=2) | sed -n 2p)
             fi
     branches:
       only: master

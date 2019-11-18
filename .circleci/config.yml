@@ -14,15 +14,13 @@ jobs:
             - "7f:d5:e1:d4:71:b6:bf:66:de:65:89:d5:28:26:7e:47"
       # Checks out code from Github
       - checkout
-      - run: 
-          name: "Setup custom environment variables"
-          command: |
-            echo 'export MY_ENV_VAR="FOO"' >> $BASH_ENV 
-      - run:
-          name: "What was my custom environment variable?"
-          command: echo ${MY_ENV_VAR}
       # Sets up remote Docker container to execute Docker commands
       - setup_remote_docker
+      - run: 
+          name: "Set CURRENT_TAG and PREVIOUS_TAG environment variables"
+          command: |
+            echo 'export PREVIOUS_TAG=`git describe --abbrev=0 --tags $(git rev-list --tags --max-count=2) | sed -n 2p`' >> $BASH_ENV 
+            echo 'export CURRENT_TAG=`git describe --abbrev=0 --tags $(git rev-list --tags --max-count=2) | sed -n 1p`' >> $BASH_ENV
       - run:
           name: Set GitHub account identity
           command: |
@@ -36,16 +34,16 @@ jobs:
           # Only builds containers if a version update has been made to package.json
           name: Build & push container images(s)
           command: |
-           lerna run package --since $(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=2) | sed -n 2p)
+           lerna run package --since ${PREVIOUS_TAG}
            echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-           lerna run push --since $(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=2) | sed -n 2p)
+           lerna run push --since ${PREVIOUS_TAG}
       - run:
           name: Deploy container(s)
           command: |
             if false; then
              echo
             else
-              lerna run deploy --since $(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=2) | sed -n 2p)
+              lerna run deploy --since ${PREVIOUS_TAG}
             fi
     branches:
       only: master

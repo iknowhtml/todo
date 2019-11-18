@@ -5,12 +5,22 @@ jobs:
     docker:
       - image: iknowhtml/todo-build-container
     working_directory: ~/todo
+    shell: /bin/sh -leo pipefail
+    environment:
+      BASH_ENV: /etc/profile
     steps:
       - add_ssh_keys:
           fingerprints:
             - "7f:d5:e1:d4:71:b6:bf:66:de:65:89:d5:28:26:7e:47"
       # Checks out code from Github
       - checkout
+      - run: 
+          name: "Setup custom environment variables"
+          command: |
+            echo 'export MY_ENV_VAR="FOO"' >> $BASH_ENV 
+      - run:
+          name: "What was my custom environment variable?"
+          command: echo ${MY_ENV_VAR}
       # Sets up remote Docker container to execute Docker commands
       - setup_remote_docker
       - run:
@@ -27,7 +37,7 @@ jobs:
           name: Build & push container images(s)
           command: |
            lerna run package --since $(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=2) | sed -n 2p)
-            echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
+           echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
            lerna run push --since $(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=2) | sed -n 2p)
       - run:
           name: Deploy container(s)

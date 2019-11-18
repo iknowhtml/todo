@@ -14,20 +14,25 @@ jobs:
       # Sets up remote Docker container to execute Docker commands
       - setup_remote_docker
       - run:
+          name: Set GitHub account identity
+          command: |
+            git config user.email "circleci-deployment-bot@iknowht.ml"
+            git config user.name "circleci-deployment-bot"
+      - run:
           # Only increments version and pushes tag if file changes warrant a redeployment
-          name: Increment Version & Push Tag
+          name: Increment version(s) & push tag(s)
           command: lerna version --conventional-commits --yes
       - run:
           name: Set PREVIOUS_TAG environment variable
           command: echo 'export PREVIOUS_TAG=`git describe --abbrev=0 --tags $(git rev-list --tags --max-count=2) | sed -n 2p`' >> $BASH_ENV
       - run:
           # Only builds containers if a version update has been made to package.json
-          name: Build & Push Container Images(s)
+          name: Build & push container images(s)
           command: |
            lerna run package --since $PREVIOUS_TAG
            lerna run push --since $PREVIOUS_TAG
       - run:
-          name: Deploy Container(s)
+          name: Deploy container(s)
           command: |
             if false; then
             else

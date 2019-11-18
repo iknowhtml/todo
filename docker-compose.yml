@@ -10,7 +10,7 @@ services:
       - graphql
     
   graphql:
-    image: iknowhtml/todo-graphql:latest
+    image: iknowhtml/todo-graphql:${TAG}
     build:
       context: ./server/graphql
     working_dir: /usr/app

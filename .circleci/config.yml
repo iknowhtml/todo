@@ -6,6 +6,9 @@ jobs:
       - image: iknowhtml/todo-build-container
     working_directory: ~/todo
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "7f:d5:e1:d4:71:b6:bf:66:de:65:89:d5:28:26:7e:47"
       # Checks out code from Github
       - checkout
       # Sets up remote Docker container to execute Docker commands

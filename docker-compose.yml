@@ -10,7 +10,7 @@ services:
       - graphql
     
   graphql:
-    image: iknowhtml/todo-graphql:$(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=2) | sed -n 1p)
+    image: iknowhtml/todo-graphql:${CURRENT_TAG}
     build:
       context: ./server/graphql
     working_dir: /usr/app

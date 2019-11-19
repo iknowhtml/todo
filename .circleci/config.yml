@@ -9,16 +9,14 @@ jobs:
     environment:
       BASH_ENV: /etc/profile
     steps:
+      # Add Github read write access key
       - add_ssh_keys:
           fingerprints:
             - "7f:d5:e1:d4:71:b6:bf:66:de:65:89:d5:28:26:7e:47"
       # Checks out code from Github
       - checkout
-      # Sets up remote Docker container to execute Docker commands
-      - setup_remote_docker
       - restore_cache:
           keys:
-            # when lock file changes, use increasingly general patterns to restore cache
             - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
             - yarn-packages-v1-{{ .Branch }}-
             - yarn-packages-v1-
@@ -39,10 +37,12 @@ jobs:
           command: |
             git config user.email "circleci-deployment-bot@iknowht.ml"
             git config user.name "circleci-deployment-bot"
+            # Sets up remote Docker container to execute Docker commands
       - run:
           # Only increments version and pushes tag if file changes warrant a redeployment
           name: Increment version(s) & push tag(s)
           command: yarn tag
+      - setup_remote_docker
       - run:
           # Only builds containers if a version update has been made to package.json
           name: Build & push container images(s)

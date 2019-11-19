@@ -42,14 +42,14 @@ jobs:
       - run:
           # Only increments version and pushes tag if file changes warrant a redeployment
           name: Increment version(s) & push tag(s)
-          command: lerna version --conventional-commits --yes
+          command: yarn tag
       - run:
           # Only builds containers if a version update has been made to package.json
           name: Build & push container images(s)
           command: |
-           lerna run package --since $PREVIOUS_TAG
+           yarn package
            echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-           lerna run push --since $PREVIOUS_TAG
+           yarn push
       - run:
           name: Deploy container(s)
           command: |

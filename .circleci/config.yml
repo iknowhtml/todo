@@ -16,6 +16,19 @@ jobs:
       - checkout
       # Sets up remote Docker container to execute Docker commands
       - setup_remote_docker
+      - restore_cache:
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-
+      - run: 
+          name: Install Lerna
+          command: yarn install --freeze-lockfile
+      - save_cache:
+          paths:
+            - ~/.cache/yarn
+          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run: 
           name: "Set CURRENT_TAG and PREVIOUS_TAG environment variables"
           command: |

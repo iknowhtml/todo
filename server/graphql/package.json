@@ -9,9 +9,9 @@
   "scripts": {
     "start": "nodemon --exec babel-node src",
     "build": "webpack --mode production --progress --display verbose --display-error-details --colors",
-    "package": "docker build -t iknowhtml/todo-graphql:${CURRENT_TAG} .",
-    "push": "docker push iknowhtml/todo-graphql:${CURRENT_TAG}",
-    "deploy": "echo \"deploying ${CURRENT_TAG}...\"",
+    "package": "docker build -t iknowhtml/todo-graphql:$CURRENT_TAG .",
+    "push": "docker push iknowhtml/todo-graphql:$CURRENT_TAG",
+    "deploy": "echo \"deploying $CURRENT_TAG...\"",
     "test": "jest",
     "lint": "eslint --fix src/ tests/",
     "clean": "rm -rf dist/*"

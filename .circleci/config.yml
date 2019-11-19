@@ -34,16 +34,16 @@ jobs:
           # Only builds containers if a version update has been made to package.json
           name: Build & push container images(s)
           command: |
-           lerna run package --since ${PREVIOUS_TAG}
+           lerna run package --since $PREVIOUS_TAG
            echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-           lerna run push --since ${PREVIOUS_TAG}
+           lerna run push --since $PREVIOUS_TAG
       - run:
           name: Deploy container(s)
           command: |
             if false; then
              echo
             else
-              lerna run deploy --since ${PREVIOUS_TAG}
+              lerna run deploy --since $PREVIOUS_TAG
             fi
     branches:
       only: master

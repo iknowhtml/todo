@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: "{{ include "todo.fullname" . }}-{{ .Values.server.graphql.clusterIPService.name }}"
 spec:
+  selector: 
+    name: "{{ include "todo.fullname" . }}-{{ .Values.server.graphql.deployment.name }}"
   ports:
     - port: {{ .Values.server.graphql.port }}
       targetPort: {{ .Values.server.graphql.port }}

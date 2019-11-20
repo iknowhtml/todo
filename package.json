@@ -1,9 +1,7 @@
 {
   "name": "todo-application",
   "scripts": {
-    "setup": "docker volume create node_modules",
-    "install": "docker-compose -f docker-compose.builder.yml run --rm install",
-    "start": "docker-compose -f docker-compose.development.yml up",
+    "start": "skaffold dev",
     "tag": "lerna version --conventional-commit --yes",
     "package": "lerna run package --since $PREVIOUS_TAG",
     "push": "lerna run push --since $PREVIOUS_TAG"

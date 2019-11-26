@@ -2,6 +2,7 @@
   "name": "todo-application",
   "scripts": {
     "start": "skaffold dev",
+    "lerna": "lerna",
     "tag": "lerna version --conventional-commit --yes",
     "package": "lerna run package --since $PREVIOUS_TAG",
     "push": "lerna run push --since $PREVIOUS_TAG"

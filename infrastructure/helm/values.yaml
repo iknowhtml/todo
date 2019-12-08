@@ -6,7 +6,7 @@ server:
       image:
         repository: iknowhtml/todo-graphql
         tag: latest
-      imagePullPolicy: Never
+      imagePullPolicy: Always
     clusterIPService:
       name: graphql-cluster-ip-service
     port: 9090
@@ -15,4 +15,9 @@ nginx-ingress:
   defaultBackend:
     enabled: false
 
+# NO HTTP LOAD BALANCING CONFIGURATION FOR NGINX INGRESS
+# controller:
+#   service:
+#     type: ClusterIP
+#   hostNetwork: true
 

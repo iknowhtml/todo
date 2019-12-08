@@ -18,4 +18,3 @@ spec:
           imagePullPolicy: {{ .Values.server.graphql.deployment.imagePullPolicy }}
           ports:
               - containerPort: {{ .Values.server.graphql.port }}
-          

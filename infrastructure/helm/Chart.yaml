@@ -3,3 +3,7 @@ appVersion: "1.0"
 description: A Helm chart for Kubernetes
 name: todo
 version: 0.1.0
+dependencies:
+- name: nginx-ingress
+  version: "1.26.2"
+  repository: "https://kubernetes-charts.storage.googleapis.com/"

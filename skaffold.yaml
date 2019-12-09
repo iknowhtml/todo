@@ -14,5 +14,5 @@ build:
 deploy:
     helm:
       releases:
-        - name: development
+        - name: todo
           chartPath: infrastructure/helm

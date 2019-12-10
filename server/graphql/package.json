@@ -10,7 +10,7 @@
     "start": "nodemon --exec babel-node src",
     "build": "webpack --mode production --progress --display verbose --display-error-details --colors",
     "tag": "echo 'export TODO_GRAPHQL_TAG=$(lerna ls -l | grep graphql | cut \"-d \" -f 2)' >> $BASH_ENV",
-    "package": "docker build -t iknowhtml/todo-graphql:$TODO_GRAPHQL_TAG iknowhtml/todo-graphql:latest .",
+    "package": "docker build -t iknowhtml/todo-graphql:$TODO_GRAPHQL_TAG . && docker build -t iknowhtml/todo-graphql:latest .",
     "push": "docker push iknowhtml/todo-graphql",
     "deploy": "echo \"deploying $CURRENT_TAG...\"",
     "test": "jest",

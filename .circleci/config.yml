@@ -1,5 +1,5 @@
 version: 2
-  # Updates versions of services if applicable and pushes update with tag
+jobs:
   build:
     docker:
       - image: iknowhtml/todo-build-container:latest

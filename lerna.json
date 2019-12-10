@@ -1,12 +1,14 @@
 {
-  "packages": [
-    "client/*",
-    "server/*"
-  ],
+  "npmClient": "yarn",
+  "useWorkspaces": true,
   "version": "0.0.3",
   "command": {
     "version": {
       "message": "chore(release): Release %s"
     }
-  }
+  },
+  "packages": [
+    "client/*",
+    "server/*"
+  ]
 }

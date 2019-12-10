@@ -16,3 +16,7 @@ controller:
   service:
     type: ClusterIP
   hostNetwork: true
+
+#NO DEFAULT BACKEND
+defaultBackend:
+  enabled: false

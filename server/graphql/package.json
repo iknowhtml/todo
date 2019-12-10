@@ -9,7 +9,7 @@
   "scripts": {
     "start": "nodemon --exec babel-node src",
     "build": "webpack --mode production --progress --display verbose --display-error-details --colors",
-    "tag": "echo 'export TODO_GRAPHQL_TAG=$(echo v$(echo `cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g'`))' >> $BASH_ENV",
+    "tag": "echo 'export TODO_GRAPHQL_TAG=`v$(echo `cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g'`)`' >> $BASH_ENV",
     "package": "docker build -t iknowhtml/todo-graphql:$TODO_GRAPHQL_TAG iknowhtml/todo-graphql:latest .",
     "push": "docker push iknowhtml/todo-graphql",
     "deploy": "echo \"deploying $CURRENT_TAG...\"",

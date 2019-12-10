@@ -4,9 +4,6 @@ jobs:
     docker:
       - image: iknowhtml/todo-build-container:latest
     working_directory: ~/todo
-    shell: /bin/sh -leo pipefail
-    environment:
-      BASH_ENV: /etc/profile
     steps:
       # Add Github read write access key
       - add_ssh_keys:

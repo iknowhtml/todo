@@ -12,6 +12,7 @@
     "tag": "lerna run tag",
     "package": "lerna run package --since $PREVIOUS_TAG",
     "push": "lerna run push --since $PREVIOUS_TAG",
+    "update": "helm dependency update infrastructure/helm",
     "deploy": "helm upgrade todo --namespace todo infrastructure/helm --set server.graphql.deployment.image.tag=$TODO_GRAPHQL_TAG"
   },
   "devDependencies": {

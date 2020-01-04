@@ -1,4 +1,4 @@
-apiVersion: skaffold/v1beta13
+apiVersion: skaffold/v2alpha1
 kind: Config
 build:
   tagPolicy: 
@@ -12,7 +12,10 @@ build:
         infer:
         - 'src/**/*.js'
 deploy:
-    helm:
-      releases:
-        - name: todo
-          chartPath: infrastructure/helm
+  helm:
+    releases:
+    - name: todo
+      chartPath: infrastructure/helm
+    flags:
+      upgrade:
+        - --install

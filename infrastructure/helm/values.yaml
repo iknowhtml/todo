@@ -1,5 +1,6 @@
 environment:
-  production: true
+  production: false
+  development: true
 
 # SERVER CONFIGURATIONS
 server:

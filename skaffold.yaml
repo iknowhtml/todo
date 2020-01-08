@@ -16,6 +16,8 @@ deploy:
     releases:
     - name: todo
       chartPath: infrastructure/helm
+      valuesFiles:
+      - skaffold-values.yaml
     flags:
       upgrade:
         - --install

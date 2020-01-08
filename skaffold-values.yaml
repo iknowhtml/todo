@@ -1,0 +1,25 @@
+production: false 
+
+# SERVER CONFIGURATIONS
+server:
+  graphql:
+    deployment:
+      name: graphql-deployment
+      replicaCount: 1
+      image:
+        repository: iknowhtml/todo-graphql
+        tag: latest
+      imagePullPolicy: Always
+    clusterIPService:
+      name: graphql-cluster-ip-service
+    port: 9090
+
+# NO HTTP LOAD BALANCING CONFIGURATION FOR NGINX INGRESS
+controller:
+  service:
+    type: ClusterIP
+  hostNetwork: true
+
+#NO DEFAULT BACKEND
+defaultBackend:
+  enabled: false

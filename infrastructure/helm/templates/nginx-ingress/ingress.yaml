@@ -5,15 +5,23 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /$1
+    {{- if .Values.production }}
     cert-manager.io/issuer: "letsencrypt-prod"
+    {{- end }}
 spec:
+  {{- if .Values.production }}
   tls:
   - hosts:
     - todo.iknowht.ml
     secretName: todo-iknowht-ml-tls
+  {{- end }}
   rules:
+    {{- if .Values.production }}
   - host: todo.iknowht.ml
     http:
+    {{- else }}
+  - http:
+    {{- end }}
       paths:
         - path: /graphql?(.*)
           backend:

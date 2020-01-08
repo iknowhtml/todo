@@ -1,3 +1,4 @@
+# ENVIRONMENT CONFIGURATIONS FOR DEVELOPMENT
 environment:
   production: false
   development: true
@@ -16,13 +17,14 @@ server:
       name: graphql-cluster-ip-service
     port: 9090
 
-# NO HTTP LOAD BALANCING CONFIGURATION FOR NGINX INGRESS
+# NGINX INGRESS CONFIGURATIONS
+## NO HTTP LOAD BALANCING CONFIGURATION FOR NGINX INGRESS
 controller:
   service:
     type: ClusterIP
   hostNetwork: true
 
-# NO DEFAULT BACKEND
+## NO DEFAULT BACKEND
 defaultBackend:
   enabled: false
 

@@ -31,6 +31,4 @@ defaultBackend:
 # POSTGRESQL CONFIGURATIONS
 global:
   postgresql:
-    postgresqlUser: admin
     postgresqlPassword: password
-    postgresqlDatabase: todo-database

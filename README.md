@@ -18,3 +18,5 @@ To view the application, navigate to `http://<KUBERNETES_HOST>/<PATH>`.
 
 Available paths:
 * graphql
+
+***NOTE:*** *After exiting the skaffold development process, be sure to run `yarn cleanup` to delete lingering resources.*

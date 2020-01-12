@@ -31,4 +31,23 @@ defaultBackend:
 # POSTGRESQL CONFIGURATIONS
 global:
   postgresql:
+    postgresqlUsername: user
     postgresqlPassword: password
+initdbUsername: user
+initdbPassword: password
+initdbScripts:
+  init.sql: |
+    CREATE DATABASE todo;
+
+    CREATE TABLE public.tasks
+    (
+        id serial,
+        name text NOT NULL,
+        completed boolean NOT NULL DEFAULT false,
+        description text,
+        due_date date,
+        due_time time with time zone,
+        location point,
+        CONSTRAINT id_pk PRIMARY KEY (id)
+    );
+

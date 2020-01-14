@@ -24,8 +24,13 @@ jobs:
             # Sets up remote Docker container to execute Docker commands
       - run:
           # Only increments version and pushes tag if file changes warrant a redeployment
+          # Also merge version and change logs to development branch 
           name: Increment version(s) & push version(s)
-          command: lerna version --conventional-commits --yes
+          command: | 
+            lerna version --conventional-commits --yes
+            git checkout development
+            git rebase master
+            git push origin development
       - run:
           name: Sets up tags for container(s)
           command: lerna run tag

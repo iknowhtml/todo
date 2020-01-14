@@ -5,6 +5,7 @@
     "client/*",
     "server/*"
   ],
+  "private": true,
   "scripts": {
     "start": "skaffold dev",
     "lerna": "lerna",

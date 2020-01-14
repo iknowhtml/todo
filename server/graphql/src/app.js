@@ -6,7 +6,7 @@ const app = express();
 app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.send(process.env.PSQL_DB);
 });
 
 export default app;

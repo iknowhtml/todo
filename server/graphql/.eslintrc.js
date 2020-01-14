@@ -7,7 +7,7 @@ module.exports = {
   rules: {
     'prettier/prettier': ['error'],
     'no-console': 0,
-    'comma-dangle': ['error', 'always-multiline'],
+    'comma-dangle': ['error', 'only-multiline'],
   },
   env: {
     es2020: true,

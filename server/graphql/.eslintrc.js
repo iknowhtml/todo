@@ -1,10 +1,6 @@
 module.exports = {
   parserOptions: {
-    ecmaVersion: 9,
     sourceType: 'module',
-    ecmaFeatures: {
-      modules: true,
-    },
   },
   plugins: ['prettier'],
   extends: ['eslint:recommended'],
@@ -14,6 +10,7 @@ module.exports = {
     'comma-dangle': ['error', 'always-multiline'],
   },
   env: {
+    es2020: true,
     node: true,
     jest: true,
   },

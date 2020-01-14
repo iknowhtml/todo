@@ -1,0 +1,26 @@
+# ENVIRONMENT CONFIGURATIONS FOR DEVELOPMENT
+environment:
+  production: true
+  development: false
+
+# SERVER CONFIGURATIONS
+server:
+  graphql:
+    deployment:
+      name: graphql-deployment
+      replicaCount: 1
+      image:
+        repository: iknowhtml/todo-graphql
+        tag: latest
+      imagePullPolicy: ifNotPresent
+    clusterIPService:
+      name: graphql-cluster-ip-service
+    port: 9090
+
+# NGINX INGRESS CONFIGURATIONS
+## NO HTTP LOAD BALANCING CONFIGURATION FOR NGINX INGRESS
+nginx-ingress:
+  controller:
+    service:
+      type: ClusterIP
+    hostNetwork: true

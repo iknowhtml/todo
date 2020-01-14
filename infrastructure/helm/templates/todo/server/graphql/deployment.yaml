@@ -27,6 +27,14 @@ spec:
           env:
           - name: ENVIRONMENT
             value: "development"
-          - name: PSQL_DB
+          - name: DB_HOST
             value: "{{ include "todo.fullname" . }}-postgresql.{{ .Release.Namespace }}.svc.cluster.local"
+          - name: DB_PORT
+            value: "{{ .Values.postgresql.service.port }}"
+          - name: DB_USER
+            value: "{{ .Values.postgresql.postgresqlUsername }}"
+          - name: DB_PASSWORD
+            value: "{{ .Values.postgresql.postgresqlPassword }}"
+          - name: DB_NAME
+            value: "{{ .Values.postgresql.postgresqlDatabase }}"
           {{- end }}

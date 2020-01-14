@@ -37,4 +37,10 @@ spec:
             value: "{{ .Values.postgresql.postgresqlPassword }}"
           - name: DB_NAME
             value: "{{ .Values.postgresql.postgresqlDatabase }}"
+          {{- else if .Values.environment.production }}
+          env: 
+          - name: HEROKU_API_KEY
+            value: "{{ .Values.server.graphql.deployment.env.herokuAPIKey }}"
+          - name: HEROKU_POSTGRES_ID
+            value: "{{ .Values.server.graphql.deployment.env.herokuPostgresID}}"
           {{- end }}

@@ -12,7 +12,7 @@ server:
       image:
         repository: iknowhtml/todo-graphql
         tag: latest
-      imagePullPolicy: ifNotPresent
+      imagePullPolicy: IfNotPresent
     clusterIPService:
       name: graphql-cluster-ip-service
     port: 9090

@@ -1,4 +1,5 @@
 import path from 'path';
+import webpackNodeExternals from 'webpack-node-externals';
 
 const PATHS = {
   src: path.join(__dirname, 'src'),
@@ -7,6 +8,7 @@ const PATHS = {
 const webpackConfiguration = () => ({
   entry: path.join(PATHS.src, 'index.js'),
   target: 'node',
+  externals: [webpackNodeExternals()],
   output: {
     path: PATHS.dist,
     filename: 'app.js',

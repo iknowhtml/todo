@@ -1,9 +1,7 @@
-# ENVIRONMENT CONFIGURATIONS FOR DEVELOPMENT
 environment:
   production: false
   development: true
 
-# SERVER CONFIGURATIONS
 server:
   graphql:
     deployment:
@@ -17,30 +15,14 @@ server:
       name: graphql-cluster-ip-service
     port: 9090
 
-# NGINX INGRESS CONFIGURATIONS
-## NO HTTP LOAD BALANCING CONFIGURATION FOR NGINX INGRESS
-controller:
-  service:
-    type: ClusterIP
-  hostNetwork: true
-
-## NO DEFAULT BACKEND
-defaultBackend:
-  enabled: false
-
-# POSTGRESQL CONFIGURATIONS
-global:
-  postgresql:
-    postgresqlUsername: user
-    postgresqlPassword: password
-initdbUsername: user
-initdbPassword: password
-initdbScripts:
-  init.sql: |
-    CREATE DATABASE todo;
-
-    CREATE TABLE public.tasks
-    (
+postgresql:
+  postgresqlUsername: user
+  postgresqlPassword: password
+  postgresqlDatabase: todo
+  initdbScripts:
+    initdb.sql: |
+      CREATE TABLE tasks
+      (
         id serial,
         name text NOT NULL,
         completed boolean NOT NULL DEFAULT false,
@@ -49,5 +31,4 @@ initdbScripts:
         due_time time with time zone,
         location point,
         CONSTRAINT id_pk PRIMARY KEY (id)
-    );
-
+      );

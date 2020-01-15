@@ -53,12 +53,8 @@ jobs:
       - run:
           name: Update charts & upgrade helm release
           command: |
-           helm dependency update infrastructure/helm
-           helm upgrade todo --namespace todo infrastructure/helm \ 
-           -f infrastructure/helm/production-values.yaml \
-           --set server.graphql.deployment.image.tag=$TODO_GRAPHQL_TAG \
-           --set server.graphql.deployment.env.herokuAPIKey=${HEROKU_API_KEY} \
-           --set server.graphql.deployment.env.herokuPostgresID=${HEROKU_POSTGRES_ID}
+            helm dependency update infrastructure/helm
+            helm upgrade todo infrastructure/helm --namespace todo -f infrastructure/helm/production-values.yaml --set server.graphql.deployment.image.tag=$TODO_GRAPHQL_TAG --set server.graphql.deployment.env.herokuAPIKey=${HEROKU_API_KEY} --set server.graphql.deployment.env.herokuPostgresID=${HEROKU_POSTGRES_ID}
 
     branches:
       only: master

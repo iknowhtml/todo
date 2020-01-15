@@ -12,5 +12,5 @@ server:
         tag: latest
       imagePullPolicy: IfNotPresent
     clusterIPService:
-      name: graphql-cluster-ip-service
+      name: graphql-cluster-ip
     port: 9090

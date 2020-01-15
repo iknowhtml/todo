@@ -14,7 +14,11 @@ spec:
     spec:
       containers:
         - name: "{{ .Chart.Name }}-{{ .Values.server.graphql.deployment.name }}"
+          {{- if .Values.graphqlImage }}
+          image: "{{ .Values.graphqlImage }}"
+          {{- else }}
           image: "{{ .Values.server.graphql.deployment.image.repository }}:{{ .Values.server.graphql.deployment.image.tag }}"
+          {{- end }}
           imagePullPolicy: {{ .Values.server.graphql.deployment.imagePullPolicy }}
           ports:
               - containerPort: {{ .Values.server.graphql.port }}

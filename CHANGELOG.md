@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.5](https://github.com/iknowhtml/todo/compare/v0.0.4...v0.0.5) (2020-01-15)
+
+
+### Bug Fixes
+
+* **graphql:** Add regenerator-runtime ([a71041c](https://github.com/iknowhtml/todo/commit/a71041c2bbb44a32a35e637fffccd8a611833942))
+* **graphql:** Add regenerator-runtime package ([31d2db8](https://github.com/iknowhtml/todo/commit/31d2db8bb40e10f30836b7dfbfa3bba0e76af3eb))
+
+
+
+
+
 ## [0.0.4](https://github.com/iknowhtml/todo/compare/v0.0.3...v0.0.4) (2020-01-14)
 
 

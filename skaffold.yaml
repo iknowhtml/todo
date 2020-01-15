@@ -16,8 +16,7 @@ deploy:
     releases:
     - name: todo
       chartPath: infrastructure/helm
-      values:
-        image: iknowhtml/todo-graphql
+
     flags:
       upgrade:
         - --install

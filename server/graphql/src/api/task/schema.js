@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-express';
 
 const schema = gql`
   type Query {
-    tasks: [Task!]
+    tasks: [Task!]!
     task(id: Int!): Task!
   }
 
@@ -11,9 +11,9 @@ const schema = gql`
     name: String!
     completed: Boolean!
     description: String
-    # due_date: Date,
-    #due_time: Time,
-    # location: Location
+    due_date: String
+    due_time: String
+    # location: ????
   }
 `;
 

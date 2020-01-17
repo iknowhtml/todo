@@ -16,14 +16,18 @@ server:
     port: 9090
 
 postgresql:
-  postgresqlUsername: user
+  postgresqlUsername: postgres
   postgresqlPassword: password
+  initdbUsername: postgres
+  initdbPassword: password
   postgresqlDatabase: todo
   initdbScripts:
-    initdb.sql: |
+    setup.sql: |
+      CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
       CREATE TABLE tasks
       (
-        id serial,
+        id uuid NOT NULL DEFAULT uuid_generate_v4(),
         name text NOT NULL,
         completed boolean NOT NULL DEFAULT false,
         description text,
@@ -32,3 +36,12 @@ postgresql:
         location point,
         CONSTRAINT id_pk PRIMARY KEY (id)
       );
+
+      INSERT INTO tasks (name, description)
+      VALUES ('task 1', 'description 1');
+
+      INSERT INTO tasks (name, description)
+      VALUES ('task 2', 'description 2');
+
+      INSERT INTO tasks (name, description)
+      VALUES ('task 3', 'description 3');

@@ -1,9 +1,9 @@
-import tasks from './tasks';
+import tasks from './model';
 
 const resolver = {
   Query: {
-    tasks: () => Object.values(tasks),
-    task: (_, { id }) => tasks[id],
+    tasks: async () => await tasks.getAll(),
+    task: async (_, { id }) => await tasks.get(id),
   },
 };
 

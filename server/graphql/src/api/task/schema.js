@@ -3,17 +3,17 @@ import { gql } from 'apollo-server-express';
 const schema = gql`
   type Query {
     tasks: [Task!]!
-    task(id: Int!): Task!
+    task(id: String!): Task!
   }
 
   type Task {
-    id: Int!
+    id: ID!
     name: String!
     completed: Boolean!
     description: String
     due_date: String
     due_time: String
-    # location: ????
+    # location:
   }
 `;
 

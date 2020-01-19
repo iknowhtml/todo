@@ -1,7 +1,14 @@
-### BUILD PHASE ### 
-FROM node:alpine as builder
+### BASE ###
+FROM node:alpine as base
+
+RUN apk --no-cache add --virtual native-deps \
+  g++ gcc libgcc libstdc++ linux-headers autoconf automake make nasm python git && \
+  npm install --quiet node-gyp -g
 
 WORKDIR /usr/app
+
+### BUILD PHASE ### 
+FROM base as builder
 
 COPY package.json .
 COPY yarn.lock .
@@ -17,7 +24,7 @@ RUN yarn build
 
 ### PACKAGING PHASE ###
 # Specifies Node base image
-FROM node:alpine
+FROM base
 
 # Set working directory for all commands
 WORKDIR /usr/app

@@ -1,6 +1,6 @@
 # To Do Application Monorepo
 
-A monorepo for a custom To Do application.
+A monorepo for a custom to do application.
 
 ### Setup
 To be able to run the development environment, please have the following installed:

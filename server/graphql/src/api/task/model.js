@@ -29,12 +29,11 @@ const remove = async id => {
     .where('id', id)
     .del();
 
-  return returnCode === 1 ? true : false;
+  return { removalSuccess: returnCode === 1 };
 };
 
-const update = async ({ id, ...values }) => {
+const update = async (id, values) => {
   const db = await client.connect();
-  console.log(id, values);
   const [updatedTask] = await db('tasks')
     .where({ id })
     .update(values, [

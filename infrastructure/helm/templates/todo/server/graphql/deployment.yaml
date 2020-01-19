@@ -36,6 +36,8 @@ spec:
             value: "{{ .Values.postgresql.postgresqlPassword }}"
           - name: DB_NAME
             value: "{{ .Values.postgresql.postgresqlDatabase }}"
+          - name: TOKEN_SECRET
+            value: "{{ .Values.server.graphql.tokenSecret }}"
           {{- else if .Values.environment.production }}
           env: 
           - name: HEROKU_API_KEY

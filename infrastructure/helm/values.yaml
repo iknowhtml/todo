@@ -14,6 +14,7 @@ server:
     clusterIPService:
       name: graphql-cluster-ip
     port: 9090
+    tokenSecret: "SUPER_SECRET_TOKEN"
 
 postgresql:
   postgresqlUsername: postgres

@@ -5,7 +5,8 @@ const get = async id => {
   const [task] = await db
     .select('*')
     .from('tasks')
-    .where('id', id);
+    .where({ id });
+
   return task;
 };
 const getAll = async () => {
@@ -17,8 +18,9 @@ const getAll = async () => {
 const create = async name => {
   const db = await client.connect();
   const [id] = await db('tasks').insert({ name }, 'id');
-  const task = await get(id);
-  return task;
+  const newTask = await get(id);
+
+  return newTask;
 };
 
 const remove = async id => {
@@ -30,4 +32,21 @@ const remove = async id => {
   return returnCode === 1 ? true : false;
 };
 
-export default { get, getAll, create, remove };
+const update = async ({ id, ...values }) => {
+  const db = await client.connect();
+  console.log(id, values);
+  const [updatedTask] = await db('tasks')
+    .where({ id })
+    .update(values, [
+      'id',
+      'name',
+      'completed',
+      'description',
+      'due_date',
+      'due_time',
+    ]);
+
+  return updatedTask;
+};
+
+export default { get, getAll, create, remove, update };

@@ -12,8 +12,18 @@ const schema = gql`
       description: String
       due_date: String
       due_time: String
-    ): Task!
+    ): Task
+
     removeTask(id: ID!): Boolean!
+
+    updateTask(
+      id: ID!
+      name: String
+      completed: Boolean
+      description: String
+      due_date: String
+      due_time: String
+    ): Task
   }
 
   type Task {

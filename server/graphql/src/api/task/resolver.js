@@ -8,6 +8,7 @@ const resolver = {
   Mutation: {
     createTask: async (_, { name }) => await tasks.create(name),
     removeTask: async (_, { id }) => await tasks.remove(id),
+    updateTask: async (_, values) => await tasks.update(values),
   },
 };
 

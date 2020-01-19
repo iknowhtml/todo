@@ -1,4 +1,4 @@
-import client from '../../utils/db';
+import client from '../../database/client';
 
 const get = async id => {
   const db = await client.connect();

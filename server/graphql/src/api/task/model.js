@@ -14,4 +14,20 @@ const getAll = async () => {
   return tasks;
 };
 
-export default { get, getAll };
+const create = async name => {
+  const db = await client.connect();
+  const [id] = await db('tasks').insert({ name }, 'id');
+  const task = await get(id);
+  return task;
+};
+
+const remove = async id => {
+  const db = await client.connect();
+  const returnCode = await db('tasks')
+    .where('id', id)
+    .del();
+
+  return returnCode === 1 ? true : false;
+};
+
+export default { get, getAll, create, remove };

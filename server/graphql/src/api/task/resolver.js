@@ -5,6 +5,10 @@ const resolver = {
     tasks: async () => await tasks.getAll(),
     task: async (_, { id }) => await tasks.get(id),
   },
+  Mutation: {
+    createTask: async (_, { name }) => await tasks.create(name),
+    removeTask: async (_, { id }) => await tasks.remove(id),
+  },
 };
 
 export default resolver;

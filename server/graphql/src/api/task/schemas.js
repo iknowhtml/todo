@@ -1,12 +1,26 @@
 import { gql } from 'apollo-server-express';
 
 const schema = gql`
-  type Query {
+  type Task {
+    id: ID!
+    name: String!
+    completed: Boolean!
+    description: String
+    due_date: String
+    due_time: String
+    # location:
+  }
+
+  type Success {
+    removalSuccess: Boolean!
+  }
+
+  extend type Query {
     tasks: [Task!]!
     task(id: String!): Task!
   }
 
-  type Mutation {
+  extend type Mutation {
     createTask(
       name: String!
       description: String
@@ -14,7 +28,7 @@ const schema = gql`
       due_time: String
     ): Task
 
-    removeTask(id: ID!): Boolean!
+    removeTask(id: ID!): Success!
 
     updateTask(
       id: ID!
@@ -24,16 +38,6 @@ const schema = gql`
       due_date: String
       due_time: String
     ): Task
-  }
-
-  type Task {
-    id: ID!
-    name: String!
-    completed: Boolean!
-    description: String
-    due_date: String
-    due_time: String
-    # location:
   }
 `;
 

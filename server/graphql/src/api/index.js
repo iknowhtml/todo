@@ -1,10 +1,16 @@
 import { ApolloServer } from 'apollo-server-express';
-import resolvers from './resolvers';
 import typeDefs from './schemas';
+import resolvers from './resolvers';
+import Task from './task/model';
+import User from './user/model';
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: {
+    Task,
+    User,
+  },
   playground: process.env.ENVIRONMENT === 'development',
 });
 

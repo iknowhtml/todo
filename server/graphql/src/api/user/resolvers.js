@@ -1,7 +1,6 @@
 import { AuthenticationError } from 'apollo-server-express';
+import jwt from 'jsonwebtoken';
 import User from './model';
-import createToken from '../utils/token';
-
 const resolvers = {
   Mutation: {
     signIn: async (_, { username, password }) => {
@@ -12,7 +11,7 @@ const resolvers = {
         throw new AuthenticationError('Invalid username and/or password.');
       }
 
-      return { token: createToken(username, '30m') };
+      const token = await jwt.sign({ username }, process.env.TOKEN_SECRET);
     },
   },
 };

@@ -1,5 +1,5 @@
-import taskSchema from './task/schema';
-import userSchema from './user/schema';
+import taskSchema from './task/schemas';
+import userSchema from './user/schemas';
 import { gql } from 'apollo-server-express';
 
 const rootSchema = gql`

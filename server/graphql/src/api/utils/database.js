@@ -38,9 +38,9 @@ const connect = async () => {
     config = { ...baseConfig, ...productionConfig };
   }
 
-  const client = knex(config);
+  const db = knex(config);
 
-  return client;
+  return db;
 };
 
 export default { connect };

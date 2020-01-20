@@ -1,5 +1,6 @@
-import taskSchema from './task/schemas';
 import { gql } from 'apollo-server-express';
+import taskSchemas from './task/schemas';
+import userSchemas from './user/schemas';
 
 const rootSchema = gql`
   type Query {
@@ -15,4 +16,4 @@ const rootSchema = gql`
   }
 `;
 
-export default [rootSchema, taskSchema];
+export default [rootSchema, taskSchemas, userSchemas];

@@ -1,10 +1,10 @@
+import User from './model';
 import { AuthenticationError } from 'apollo-server-express';
-import createToken from './util/createToken';
+import createToken from './utils/createToken';
 
 const resolvers = {
   Mutation: {
-    signIn: async (_, { username, password }, { User }) => {
-      console.log(username, password);
+    signIn: async (_, { username, password }) => {
       const isValid = User.validate(username, password);
 
       if (!isValid) {

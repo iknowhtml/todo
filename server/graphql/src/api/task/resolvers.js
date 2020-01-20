@@ -1,13 +1,14 @@
+import Task from './model';
+
 const resolver = {
   Query: {
-    tasks: async (_, __, { Task }) => await Task.getAll(),
-    task: async (_, { id }, { Task }) => await Task.get(id),
+    tasks: async () => await Task.getAll(),
+    task: async (_, { id }) => await Task.get(id),
   },
   Mutation: {
-    createTask: async (_, { name }, { Task }) => await Task.create(name),
-    removeTask: async (_, { id }, { Task }) => await Task.remove(id),
-    updateTask: async (_, { id, ...values }, { Task }) =>
-      await Task.update(id, values),
+    createTask: async (_, { name }) => await Task.create(name),
+    removeTask: async (_, { id }) => await Task.remove(id),
+    updateTask: async (_, { id, ...values }) => await Task.update(id, values),
   },
 };
 

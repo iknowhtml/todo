@@ -1,15 +1,14 @@
 import { ApolloServer } from 'apollo-server-express';
 import typeDefs from './schemas';
 import resolvers from './resolvers';
-import Task from './task/model';
-import User from './user/model';
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: {
-    Task,
-    User,
+  context: async ({ req }) => {
+    const token = req.headers['x-token'] || null;
+    console.log(token);
+    return {};
   },
   playground: process.env.ENVIRONMENT === 'development',
 });

@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server-express';
 
-const schema = gql`
+const schemas = gql`
   type Task {
     id: ID!
     name: String!
@@ -41,4 +41,4 @@ const schema = gql`
   }
 `;
 
-export default schema;
+export default schemas;

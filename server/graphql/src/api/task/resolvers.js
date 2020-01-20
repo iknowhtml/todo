@@ -1,6 +1,7 @@
 import Task from './model';
+import authenticate from '../utils/authenticate';
 
-const resolver = {
+const resolvers = {
   Query: {
     tasks: async () => await Task.getAll(),
     task: async (_, { id }) => await Task.get(id),
@@ -12,4 +13,4 @@ const resolver = {
   },
 };
 
-export default resolver;
+export default authenticate(resolvers);

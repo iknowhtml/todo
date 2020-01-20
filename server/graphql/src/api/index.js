@@ -6,9 +6,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: async ({ req }) => {
-    const token = req.headers['x-token'] || null;
-    console.log(token);
-    return {};
+    return { token: req.headers.authorization || null };
   },
   playground: process.env.ENVIRONMENT === 'development',
 });

@@ -1,5 +1,4 @@
 import taskSchema from './task/schemas';
-import userSchema from './user/schemas';
 import { gql } from 'apollo-server-express';
 
 const rootSchema = gql`
@@ -16,4 +15,4 @@ const rootSchema = gql`
   }
 `;
 
-export default [rootSchema, taskSchema, userSchema];
+export default [rootSchema, taskSchema];

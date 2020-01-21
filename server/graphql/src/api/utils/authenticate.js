@@ -13,8 +13,8 @@ const authenticateResolverFunction = resolver => (
 
   try {
     const token = context.token.replace('Bearer', '');
-    const { username } = jwt.verify(token, process.env.TOKEN_SECRET);
-    context = { ...context, username };
+    const { user_id } = jwt.verify(token, process.env.JWT_SECRET);
+    context = { ...context, user_id };
   } catch (error) {
     throw new JsonWebTokenError(error);
   }

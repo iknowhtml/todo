@@ -5,16 +5,15 @@ environment:
 server:
   graphql:
     deployment:
-      name: graphql
+      name: graphql-deployment
       replicaCount: 1
-      image:
-        repository: iknowhtml/todo-graphql
-        tag: latest
+      imageRepository: iknowhtml/todo-graphql
+      imageTag: latest
       imagePullPolicy: IfNotPresent
-    clusterIPService:
+      jwtSecret: "SUPER_SECRET_TOKEN"
+    service:
       name: graphql-cluster-ip
     port: 9090
-    tokenSecret: "SUPER_SECRET_TOKEN"
 
 postgresql:
   postgresqlUsername: postgres
@@ -26,23 +25,36 @@ postgresql:
     setup.sql: |
       CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
+      CREATE TABLE users
+      (
+        id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+        username text NOT NULL UNIQUE,
+        password_hash text NOT NULL,
+        email text NOT NULL UNIQUE,
+        first_name text,
+        last_name text
+      );
+
       CREATE TABLE tasks
       (
-        id uuid NOT NULL DEFAULT uuid_generate_v4(),
+        id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
         name text NOT NULL,
+        author_id uuid NOT NULL REFERENCES users(id),
         completed boolean NOT NULL DEFAULT false,
         description text,
         due_date date,
         due_time time with time zone,
-        location point,
-        CONSTRAINT id_pk PRIMARY KEY (id)
+        location point
       );
 
-      INSERT INTO tasks (name, description)
-      VALUES ('task 1', 'description 1');
+      INSERT INTO users(id, username, password_hash, email) 
+      VALUES ('144d41c8-ee9b-45ef-9bc5-b1e72295cd52', 'user', '$2b$10$rOW479moLEkWG3Gk5sESaOjXfy.go1EiMQ1mZfsZN0MfuH/0.0XXa', 'email@domain.com');
 
-      INSERT INTO tasks (name, description)
-      VALUES ('task 2', 'description 2');
+      INSERT INTO tasks(name, author_id) 
+      VALUES('task 1', '144d41c8-ee9b-45ef-9bc5-b1e72295cd52');
 
-      INSERT INTO tasks (name, description)
-      VALUES ('task 3', 'description 3');
+      INSERT INTO tasks(name, author_id) 
+      VALUES('task 2', '144d41c8-ee9b-45ef-9bc5-b1e72295cd52');
+      
+      INSERT INTO tasks(name, author_id) 
+      VALUES('task 3', '144d41c8-ee9b-45ef-9bc5-b1e72295cd52');

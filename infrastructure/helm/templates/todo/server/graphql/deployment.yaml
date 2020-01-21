@@ -17,7 +17,7 @@ spec:
           {{- if .Values.graphqlImage }}
           image: "{{ .Values.graphqlImage }}"
           {{- else }}
-          image: "{{ .Values.server.graphql.deployment.image.repository }}:{{ .Values.server.graphql.deployment.image.tag }}"
+          image: "{{ .Values.server.graphql.deployment.imageRepository }}:{{ .Values.server.graphql.deployment.imageTag }}"
           {{- end }}
           imagePullPolicy: {{ .Values.server.graphql.deployment.imagePullPolicy }}
           ports:
@@ -36,8 +36,6 @@ spec:
             value: "{{ .Values.postgresql.postgresqlPassword }}"
           - name: DB_NAME
             value: "{{ .Values.postgresql.postgresqlDatabase }}"
-          - name: TOKEN_SECRET
-            value: "{{ .Values.server.graphql.tokenSecret }}"
           {{- else if .Values.environment.production }}
           env: 
           - name: HEROKU_API_KEY
@@ -45,3 +43,5 @@ spec:
           - name: HEROKU_POSTGRES_ID
             value: "{{ .Values.server.graphql.deployment.env.herokuPostgresID}}"
           {{- end }}
+          - name: JWT_SECRET
+            value: "{{ .Values.server.graphql.deployment.jwtSecret }}"

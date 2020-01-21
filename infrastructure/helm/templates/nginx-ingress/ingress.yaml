@@ -25,5 +25,5 @@ spec:
       paths:
         - path: /graphql
           backend:
-            serviceName: {{ include "todo.fullname" . }}-{{ .Values.server.graphql.clusterIPService.name }}
+            serviceName: {{ include "todo.fullname" . }}-{{ .Values.server.graphql.service.name }}
             servicePort: {{.Values.server.graphql.port}}

@@ -11,10 +11,6 @@ const schemas = gql`
     # location:
   }
 
-  type Success {
-    removalSuccess: Boolean!
-  }
-
   extend type Query {
     tasks: [Task!]!
     task(id: String!): Task!
@@ -28,7 +24,7 @@ const schemas = gql`
       due_time: String
     ): Task
 
-    removeTask(id: ID!): Success!
+    removeTask(id: ID!): Task
 
     updateTask(
       id: ID!

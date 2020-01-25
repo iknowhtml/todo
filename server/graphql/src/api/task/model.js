@@ -1,4 +1,3 @@
-import { sql } from 'slonik';
 import { getPool } from '../utils/databasePool';
 
 const getById = async (id, author_id) => {

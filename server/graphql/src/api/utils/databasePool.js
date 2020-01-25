@@ -1,11 +1,15 @@
-import axios from 'axios';
-import { createPool } from 'slonik';
+import { Pool } from 'pg';
 
 const getPool = async () => {
-  let connection;
+  let configuration;
 
   if (process.env.ENVIRONMENT === 'development') {
-    connection = `postgres://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}`;
+    configuration = {
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      host: process.env.DB_HOST,
+      database: process.env.DB_NAME,
+    };
   } else {
     const herokuApi = axios.create({
       baseURL: 'https://api.heroku.com/',
@@ -19,9 +23,12 @@ const getPool = async () => {
       `addons/${process.env.HEROKU_POSTGRES_ID}/config`
     );
 
-    connection = `${response.data[0].value}?ssl=true`;
+    connectionString = `${response.data[0].value}?ssl=true`;
+
+    configuration = { connectionString };
   }
-  return createPool(connection);
+
+  return new Pool(configuration);
 };
 
 export { getPool };

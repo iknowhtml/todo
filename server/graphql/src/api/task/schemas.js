@@ -1,6 +1,8 @@
 import { gql } from 'apollo-server-express';
 
 const schemas = gql`
+  scalar Location
+
   type Task {
     id: ID!
     name: String!
@@ -8,7 +10,7 @@ const schemas = gql`
     description: String
     due_date: String
     due_time: String
-    # location:
+    location: Location
   }
 
   extend type Query {
@@ -33,6 +35,7 @@ const schemas = gql`
       description: String
       due_date: String
       due_time: String
+      location: Location
     ): Task
   }
 `;

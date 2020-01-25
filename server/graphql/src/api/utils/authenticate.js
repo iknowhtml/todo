@@ -12,7 +12,7 @@ const authenticateResolverFunction = resolver => (
   }
 
   try {
-    const token = context.token.replace('Bearer', '');
+    const token = context.token.replace('Bearer ', '');
     const { user_id } = jwt.verify(token, process.env.JWT_SECRET);
     context = { ...context, user_id };
   } catch (error) {

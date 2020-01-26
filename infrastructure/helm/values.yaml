@@ -2,6 +2,17 @@ environment:
   production: false
   development: true
 
+client:
+  deployment:
+    name: client-deployment
+    replicaCount: 1
+    imageRepository: iknowhtml/todo-client
+    imageTag: latest
+    imagePullPolicy: IfNotPresent
+  service:
+    name: client-cluster-ip
+  port: 8080
+
 server:
   graphql:
     deployment:

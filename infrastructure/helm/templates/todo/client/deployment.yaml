@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ include "todo.fullname" . }}-{{ .Values.client.deployment.name }}"
+spec:
+  replicas: {{ .Values.client.deployment.replicaCount }}
+  selector:
+    matchLabels:
+      name: "{{ include "todo.fullname" . }}-{{ .Values.client.deployment.name }}"
+  template:
+    metadata:
+      labels:
+        name: "{{ include "todo.fullname" . }}-{{ .Values.client.deployment.name }}"
+    spec:
+      containers:
+        - name: "{{ .Chart.Name }}-{{ .Values.client.deployment.name }}"
+          {{- if .Values.clientImage }}
+          image: "{{ .Values.clientImage }}"
+          {{- else }}
+          image: "{{ .Values.client.deployment.imageRepository }}:{{ .Values.client.deployment.imageTag }}"
+          {{- end }}
+          imagePullPolicy: {{ .Values.client.deployment.imagePullPolicy }}
+          ports:
+              - containerPort: {{ .Values.client.port }}
+         

@@ -11,6 +11,13 @@ build:
       sync:
         infer:
         - 'src/**/*.js'
+    - image: iknowhtml/todo-client
+      context: client
+      docker:
+        dockerfile: Development.Dockerfile
+      sync:
+        infer:
+        - 'src/**/*.js'
 deploy:
   helm:
     releases:
@@ -18,6 +25,7 @@ deploy:
       chartPath: infrastructure/helm
       values:
         graphqlImage: iknowhtml/todo-graphql
+        clientImage: iknowhtml/todo-client
     flags:
       upgrade:
         - --install

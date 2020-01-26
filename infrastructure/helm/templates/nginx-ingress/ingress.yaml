@@ -27,3 +27,7 @@ spec:
           backend:
             serviceName: {{ include "todo.fullname" . }}-{{ .Values.server.graphql.service.name }}
             servicePort: {{.Values.server.graphql.port}}
+        - path: /?(.*)
+          backend:
+            serviceName: {{ include "todo.fullname" . }}-{{ .Values.client.service.name }}
+            servicePort: {{.Values.client.port}}

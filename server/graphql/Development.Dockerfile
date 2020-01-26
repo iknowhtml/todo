@@ -6,9 +6,10 @@ RUN apk --no-cache add --virtual native-deps \
 
 WORKDIR /usr/app
 
+COPY babel.config.js .
+
 COPY package.json .
 COPY yarn.lock .
-COPY babel.config.js .
 
 RUN yarn install
 

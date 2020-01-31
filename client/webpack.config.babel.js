@@ -15,6 +15,11 @@ const webpackConfiguration = () => ({
     path: path.resolve('dist'),
     filename: '[name].bundle.[hash].js',
   },
+  resolve: {
+    alias: {
+      'react-native$': 'react-native-web',
+    },
+  },
   // Configures Loaders
   module: {
     rules: [
@@ -35,7 +40,21 @@ const webpackConfiguration = () => ({
             },
           },
           'css-loader',
-          'postcss-loader',
+          {
+            loader: 'postcss-loader',
+          },
+        ],
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'assets/fonts/',
+            },
+          },
         ],
       },
     ],

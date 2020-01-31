@@ -1,6 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { AppRegistry } from 'react-native';
+
+import 'typeface-raleway';
+import './global.css';
 
 import App from './components/App';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+AppRegistry.registerComponent('App', () => App);
+AppRegistry.runApplication('App', {
+  rootTag: document.getElementById('app'),
+});

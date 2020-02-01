@@ -26,6 +26,6 @@ deploy:
       values:
         graphqlImage: iknowhtml/todo-graphql
         clientImage: iknowhtml/todo-client
-    flags:
-      upgrade:
-        - --install
+    # flags:
+    #   upgrade:
+    #     - --install

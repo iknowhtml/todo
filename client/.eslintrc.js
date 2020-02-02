@@ -12,8 +12,10 @@ module.exports = {
   rules: {
     'prettier/prettier': ['error'],
     'comma-dangle': ['error', 'always-multiline'],
+    'react/jsx-uses-react': 1,
   },
   env: {
+    react: true,
     node: true,
     browser: true,
     jest: true,

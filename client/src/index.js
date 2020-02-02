@@ -2,10 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppRegistry } from 'react-native';
 
-import 'typeface-raleway';
-import './global.css';
-
-import App from './components/App';
+import App from './components/App.jsx';
 
 AppRegistry.registerComponent('App', () => App);
 AppRegistry.runApplication('App', {

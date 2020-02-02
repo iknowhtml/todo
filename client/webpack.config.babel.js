@@ -106,6 +106,7 @@ const webpackConfiguration = () => ({
       errors: true,
     },
   },
+  devtool: isProduction ? false : 'cheap-eval-source-map',
 });
 
 export default webpackConfiguration;

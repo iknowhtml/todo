@@ -1,6 +1,5 @@
 import React from 'react';
-
-import Task from './task.jsx';
+import Task from './Task';
 
 export default {
   title: 'Task',
@@ -19,8 +18,14 @@ export const incompleteTaskWithDueTime = () => (
 
 export const completeTask = () => <Task completed={true}>Completed Task</Task>;
 
-export const completeTaskWithDueTime = () => (
-  <Task completed={true} dueTime={'17:00'}>
-    Completed Task with Due Time
+export const selectedIncompleteTask = () => (
+  <Task completed={false} selected={true}>
+    Incomplete Task
+  </Task>
+);
+
+export const selectedIncompleteTaskWithDueTime = () => (
+  <Task completed={false} selected={true} dueTime={'17:00'}>
+    Incomplete Task
   </Task>
 );

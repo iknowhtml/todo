@@ -16,6 +16,7 @@ const webpackConfiguration = () => ({
     filename: '[name].bundle.[hash].js',
   },
   resolve: {
+    extensions: ['.js', '.jsx'],
     alias: {
       'react-native$': 'react-native-web',
     },
@@ -31,7 +32,7 @@ const webpackConfiguration = () => ({
         },
       },
       {
-        test: /.css$/,
+        test: /.(post)?css$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,

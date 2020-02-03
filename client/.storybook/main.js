@@ -3,6 +3,7 @@ module.exports = {
   webpackFinal: config => ({
     ...config,
     resolve: {
+      extensions: ['.js', '.jsx'],
       alias: {
         'react-native$': 'react-native-web',
       },

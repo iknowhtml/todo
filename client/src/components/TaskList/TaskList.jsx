@@ -9,8 +9,8 @@ const TaskListContainer = styled.View`
 
 const TaskList = ({ tasks }) => (
   <TaskListContainer>
-    {tasks.map(({ id, name, completed }) => (
-      <Task key={id} completed={completed}>
+    {tasks.map(({ id, name, ...props }) => (
+      <Task key={id} {...props}>
         {name}
       </Task>
     ))}

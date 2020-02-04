@@ -38,7 +38,9 @@ const task = ({ children, completed, dueTime, selected }) => (
   <TaskContainer selected={selected}>
     <CheckBox completed={completed} selected={selected} />
     <TaskText selected={selected}>{children}</TaskText>
-    {dueTime && <DueTime>{convertToStandardTime(dueTime)}</DueTime>}
+    {dueTime && !completed && (
+      <DueTime>{convertToStandardTime(dueTime)}</DueTime>
+    )}
     {completed && <StrikeThrough selected={selected} />}
   </TaskContainer>
 );

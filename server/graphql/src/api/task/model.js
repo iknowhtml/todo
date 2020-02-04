@@ -52,7 +52,7 @@ const updateById = async (id, values, author_id) => {
 
   const keys = Object.keys(values);
   const _assignmentList = keys
-    .map((key, index) => `${key} = $${index + 3}`)
+    .map((key, index) => `${key} = ${index + 3}`)
     .join(', ');
   const statement = {
     text: `UPDATE tasks SET ${_assignmentList} WHERE author_id = $2 AND id = $1 RETURNING *`,

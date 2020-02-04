@@ -16,7 +16,7 @@ export const incompleteTaskWithDueTime = () => (
   </Task>
 );
 
-export const completeTask = () => <Task completed={true}>Completed Task</Task>;
+export const completedTask = () => <Task completed={true}>Completed Task</Task>;
 
 export const selectedIncompleteTask = () => (
   <Task completed={false} selected={true}>
@@ -26,6 +26,12 @@ export const selectedIncompleteTask = () => (
 
 export const selectedIncompleteTaskWithDueTime = () => (
   <Task completed={false} selected={true} dueTime={'17:00'}>
-    Incomplete Task
+    Selected Incomplete Task with Due Time
+  </Task>
+);
+
+export const selectedCompletedTaskWithDueTime = () => (
+  <Task completed={true} selected={true} dueTime={'17:00'}>
+    Selected Completed Task
   </Task>
 );

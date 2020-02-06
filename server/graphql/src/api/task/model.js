@@ -11,6 +11,7 @@ const getById = async (id, author_id) => {
   } = await pool.query(statement);
   return task;
 };
+
 const getAll = async author_id => {
   const pool = await getPool();
   const statement = {

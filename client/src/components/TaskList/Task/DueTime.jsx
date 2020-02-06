@@ -11,8 +11,8 @@ const DueTime = styled(Text)`
 
 const convertToStandardTime = time => {
   const [hour, minute] = time.split(':');
-
-  return hour < 12 ? `${hour % 12}:${minute} AM` : `${hour % 12}:${minute} PM`;
+  const standardTime = `${hour % 12}:${minute}`;
+  return hour < 12 ? `${standardTime} AM` : `${standardTime} PM`;
 };
 
 export { convertToStandardTime };

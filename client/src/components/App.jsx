@@ -1,14 +1,15 @@
 import React from 'react';
 import { View } from 'react-native';
 import Text from './Common/Text';
-import GlobalValuesProvider from './GlobalValuesProvider';
+import { ThemeProvider } from 'emotion-theming';
+import globalValues from '../globalValues';
 
 const App = () => (
-  <GlobalValuesProvider>
+  <ThemeProvider theme={globalValues}>
     <View>
       <Text>Hello World</Text>
     </View>
-  </GlobalValuesProvider>
+  </ThemeProvider>
 );
 
 export default App;

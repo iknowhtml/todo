@@ -1,7 +1,8 @@
 import { addDecorator } from '@storybook/react';
 import React from 'react';
-import GlobalValuesProvider from '../src/components/GlobalValuesProvider';
+import { ThemeProvider } from 'emotion-theming';
+import globalValues from '../src/globalValues';
 
 addDecorator(component => (
-  <GlobalValuesProvider>{component()}</GlobalValuesProvider>
+  <ThemeProvider theme={globalValues}>{component()}</ThemeProvider>
 ));

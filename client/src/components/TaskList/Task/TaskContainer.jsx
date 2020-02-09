@@ -6,8 +6,8 @@ const TaskContainer = styled.View`
   align-items: center;
   background-color: ${({ theme, selected }) =>
     selected ? theme.primaryColor : theme.primaryBackgroundColor};
-  padding: ${({ verticalPadding, horizontalPadding }) =>
-    `${verticalPadding} ${horizontalPadding}`};
+  padding: ${({ theme }) =>
+    `${theme.taskVerticalPadding} ${theme.taskHorizontalPadding}`};
   border-radius: 3px;
 `;
 

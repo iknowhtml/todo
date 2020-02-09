@@ -1,47 +1,32 @@
 import React from 'react';
-import styled, { css } from '@emotion/native';
+import { css } from '@emotion/native';
 
 import CheckBox from './CheckBox';
-import Text from '../../Common/Text';
 import DueTime, { convertToStandardTime } from './DueTime';
+import TaskContainer from './TaskContainer';
+import StrikeThrough from './StrikeThrough';
+import TaskText from './TaskText';
 
-const VERTICAL_PADDING = '0.3rem';
 const HORIZONTAL_PADDING = '0.5rem';
-
-const TaskContainer = styled.View`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: ${({ theme, selected }) =>
-    selected ? theme.primaryColor : theme.primaryBackgroundColor};
-  padding: ${VERTICAL_PADDING} ${HORIZONTAL_PADDING};
-  border-radius: 3px;
-`;
-
-const StrikeThrough = styled.View`
-  position: absolute;
-  top: 50%;
-  width: calc(100% - ${HORIZONTAL_PADDING} * 2);
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: ${({ theme, selected }) =>
-    selected ? theme.primaryBackgroundColor : theme.primaryColor};
-`;
-
-const TaskText = styled(Text)`
-  color: ${({ theme, selected }) =>
-    selected ? theme.primaryBackgroundColor : null};
-  font-weight: 300;
-`;
+const VERTICAL_PADDING = '0.3rem';
 
 const task = ({ children, completed, dueTime, selected }) => (
-  <TaskContainer selected={selected}>
+  <TaskContainer
+    selected={selected}
+    verticalPadding={VERTICAL_PADDING}
+    horizontalPadding={HORIZONTAL_PADDING}
+  >
     <CheckBox completed={completed} selected={selected} />
     <TaskText selected={selected}>{children}</TaskText>
     {dueTime && !completed && (
       <DueTime>{convertToStandardTime(dueTime)}</DueTime>
     )}
-    {completed && <StrikeThrough selected={selected} />}
+    {completed && (
+      <StrikeThrough
+        selected={selected}
+        horizontalTrimWidth={HORIZONTAL_PADDING}
+      />
+    )}
   </TaskContainer>
 );
 

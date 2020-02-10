@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from '@emotion/native';
+import { format, parseISO } from 'date-fns/fp';
 
 import Text from '../Common/Text';
 import Task from './Task';
@@ -27,22 +28,34 @@ const DateHeader = styled(Text)`
   margin-left: auto;
 `;
 
-const TaskListHeader = () => (
-  <TaskListHeaderContainer>
-    <DayOfWeekHeader>Today</DayOfWeekHeader>
-    <DateHeader>MONDAY, 1 JANUARY</DateHeader>
-  </TaskListHeaderContainer>
-);
+const TaskListHeader = ({ date, today = format('yyyy-MM-dd')(new Date()) }) => {
+  const isToday = date === today;
+  const dateObject = parseISO(date);
+  const dayOfWeek = format('EEEE')(dateObject).toUpperCase();
+  const monthDay = format('MMMM io')(dateObject).toUpperCase();
+  return (
+    <TaskListHeaderContainer>
+      <DayOfWeekHeader>
+        {isToday ? 'today' : dayOfWeek.toLowerCase()}
+      </DayOfWeekHeader>
+      <DateHeader>
+        {isToday ? `${dayOfWeek},  ${monthDay}` : monthDay}
+      </DateHeader>
+    </TaskListHeaderContainer>
+  );
+};
 
-const TaskList = ({ tasks }) => (
-  <TaskListContainer>
-    <TaskListHeader />
-    {tasks.map(({ id, name, ...props }) => (
-      <Task key={id} {...props}>
-        {name}
-      </Task>
-    ))}
-  </TaskListContainer>
-);
+const TaskList = ({ tasks, date }) => {
+  return (
+    <TaskListContainer>
+      <TaskListHeader date={date} />
+      {tasks.map(({ id, name, ...props }) => (
+        <Task key={id} {...props}>
+          {name}
+        </Task>
+      ))}
+    </TaskListContainer>
+  );
+};
 
 export default TaskList;

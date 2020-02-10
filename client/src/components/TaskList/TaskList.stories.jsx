@@ -1,4 +1,5 @@
 import React from 'react';
+import { format, addDays } from 'date-fns/fp';
 import TaskList from './TaskList';
 
 export default {
@@ -26,4 +27,10 @@ const tasks = [
   },
 ];
 
-export const taskList = () => <TaskList tasks={tasks} />;
+export const todayTaskList = () => (
+  <TaskList tasks={tasks} date={format('yyyy-MM-dd')(new Date())} />
+);
+
+export const tomorrowTaskList = () => (
+  <TaskList tasks={tasks} date={format('yyyy-MM-dd')(addDays(1)(new Date()))} />
+);

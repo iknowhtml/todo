@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from '@emotion/native';
-import { format, parseISO } from 'date-fns/fp';
+import { format, parseISO } from 'date-fns';
 
 import Text from '../Common/Text';
 import Task from './Task';
@@ -28,18 +28,19 @@ const DateHeader = styled(Text)`
   margin-left: auto;
 `;
 
-const TaskListHeader = ({ date, today = format('yyyy-MM-dd')(new Date()) }) => {
+const TaskListHeader = ({ date, today = format(new Date(), 'yyyy-MM-dd') }) => {
   const isToday = date === today;
   const dateObject = parseISO(date);
-  const dayOfWeek = format('EEEE')(dateObject).toUpperCase();
-  const monthDay = format('MMMM io')(dateObject).toUpperCase();
+  const dayOfWeek = format(dateObject, 'EEEE');
+  const monthDay = format(dateObject, 'MMMM do');
+
   return (
     <TaskListHeaderContainer>
       <DayOfWeekHeader>
         {isToday ? 'today' : dayOfWeek.toLowerCase()}
       </DayOfWeekHeader>
       <DateHeader>
-        {isToday ? `${dayOfWeek},  ${monthDay}` : monthDay}
+        {(isToday ? `${dayOfWeek},  ${monthDay}` : `${monthDay}`).toUpperCase()}
       </DateHeader>
     </TaskListHeaderContainer>
   );

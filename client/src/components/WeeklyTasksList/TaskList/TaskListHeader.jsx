@@ -3,7 +3,7 @@ import styled from '@emotion/native';
 import { format, parseISO } from 'date-fns';
 import Text from '../../Common/Text';
 
-const TaskListHeaderContainer = styled.View`
+const HeaderContainer = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -27,14 +27,14 @@ const TaskListHeader = ({ date, today = format(new Date(), 'yyyy-MM-dd') }) => {
   const dayOfWeek = format(dateObject, 'EEEE');
   const monthDay = format(dateObject, 'MMMM do');
   return (
-    <TaskListHeaderContainer>
+    <HeaderContainer>
       <DayOfWeekHeader>
         {isToday ? 'today' : dayOfWeek.toLowerCase()}
       </DayOfWeekHeader>
       <DateHeader>
         {(isToday ? `${dayOfWeek},  ${monthDay}` : `${monthDay}`).toUpperCase()}
       </DateHeader>
-    </TaskListHeaderContainer>
+    </HeaderContainer>
   );
 };
 

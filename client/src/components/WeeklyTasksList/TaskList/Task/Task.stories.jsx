@@ -1,5 +1,5 @@
 import React from 'react';
-import Task from './Task';
+import Task from './';
 
 export default {
   title: 'Task',

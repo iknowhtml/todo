@@ -26,14 +26,16 @@ const TaskListHeader = ({ date, today = format(new Date(), 'yyyy-MM-dd') }) => {
   const dateObject = parseISO(date);
   const dayOfWeek = format(dateObject, 'EEEE');
   const monthDay = format(dateObject, 'MMMM do');
-  return (<TaskListHeaderContainer>
-    <DayOfWeekHeader>
-      {isToday ? 'today' : dayOfWeek.toLowerCase()}
-    </DayOfWeekHeader>
-    <DateHeader>
-      {(isToday ? `${dayOfWeek},  ${monthDay}` : `${monthDay}`).toUpperCase()}
-    </DateHeader>
-  </TaskListHeaderContainer>);
+  return (
+    <TaskListHeaderContainer>
+      <DayOfWeekHeader>
+        {isToday ? 'today' : dayOfWeek.toLowerCase()}
+      </DayOfWeekHeader>
+      <DateHeader>
+        {(isToday ? `${dayOfWeek},  ${monthDay}` : `${monthDay}`).toUpperCase()}
+      </DateHeader>
+    </TaskListHeaderContainer>
+  );
 };
 
-export degault TaskListHeader;
+export default TaskListHeader;

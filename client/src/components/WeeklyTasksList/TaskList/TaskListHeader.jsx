@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/native';
 import { format, parseISO } from 'date-fns';
-import Text from '../Common/Text';
+import Text from '../../Common/Text';
 
 const TaskListHeaderContainer = styled.View`
   display: flex;

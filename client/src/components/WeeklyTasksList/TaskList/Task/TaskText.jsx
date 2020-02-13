@@ -1,5 +1,5 @@
 import styled from '@emotion/native';
-import Text from '../../Common/Text';
+import Text from '../../../Common/Text';
 
 const TaskText = styled(Text)`
   color: ${({ theme, selected }) =>

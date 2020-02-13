@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from '@emotion/native';
-import Text from '../../Common/Text';
+import Text from '../../../Common/Text';
 
 const DueTime = styled(Text)`
   font-size: 0.75rem;

@@ -2,3 +2,4 @@ node_modules
 lerna-debug.log
 yarn-error.log
 infrastructure/misc
+client/playground.js

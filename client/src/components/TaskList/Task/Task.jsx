@@ -1,13 +1,23 @@
 import React from 'react';
-import { css } from '@emotion/native';
+import { css }, styled from '@emotion/native';
 
 import CheckBox from './CheckBox';
 import DueTime, { convertToStandardTime } from './DueTime';
-import TaskContainer from './TaskContainer';
 import StrikeThrough from './StrikeThrough';
 import TaskText from './TaskText';
 
-const task = ({ children, completed, dueTime, selected }) => (
+const TaskContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: ${({ theme, selected }) =>
+    selected ? theme.primaryColor : theme.primaryBackgroundColor};
+  padding: ${({ theme }) =>
+    `${theme.taskVerticalPadding} ${theme.taskHorizontalPadding}`};
+  border-radius: 3px;
+`;
+
+const Task = ({ children, completed, dueTime, selected }) => (
   <TaskContainer selected={selected}>
     <CheckBox completed={completed} selected={selected} />
     <TaskText selected={selected}>{children}</TaskText>
@@ -18,4 +28,4 @@ const task = ({ children, completed, dueTime, selected }) => (
   </TaskContainer>
 );
 
-export default task;
+export default Task;

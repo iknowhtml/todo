@@ -1,5 +1,5 @@
 import React from 'react';
-import { css }, styled from '@emotion/native';
+import styled, { css } from '@emotion/native';
 
 import CheckBox from './CheckBox';
 import DueTime, { convertToStandardTime } from './DueTime';
